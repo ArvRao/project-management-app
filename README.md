@@ -16,5 +16,5 @@ Go, React and PostgreSQL
 
 Todos for today:
 - [X] Setup the project
-- [] Start with the youTube tutorial and learn the basics of building APIs in Go
-- 
+- [X] Start with the youTube tutorial and learn the basics of building APIs in Go
+- [X] Build all CRUD APIs for Project model
