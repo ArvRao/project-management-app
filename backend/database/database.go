@@ -6,8 +6,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/arvrao/kanban-board-app/config"
-	"github.com/arvrao/kanban-board-app/model"
+	"github.com/arvrao/project-management-app/config"
+	"github.com/arvrao/project-management-app/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
