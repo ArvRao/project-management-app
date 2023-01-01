@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/arvrao/kanban-board-app/database"
-	"github.com/arvrao/kanban-board-app/model"
+	"github.com/arvrao/project-management-app/database"
+	"github.com/arvrao/project-management-app/model"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 )

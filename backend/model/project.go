@@ -6,6 +6,7 @@ import (
 )
 
 // Project struct
+// add other fields like about and description of project
 type Project struct {
 	gorm.Model
 	ID          uuid.UUID `gorm:"type:uuid;"`

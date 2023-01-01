@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/arvrao/kanban-board-app/handler"
+	"github.com/arvrao/project-management-app/handler"
 	"github.com/gofiber/fiber/v2"
 )
 
