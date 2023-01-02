@@ -6,12 +6,12 @@ import (
 )
 
 // Project struct
-// add other fields like about and description of project
+// add other fields like about the project and type of project
 type Project struct {
 	gorm.Model
 	ID          uuid.UUID `gorm:"type:uuid;"`
 	ProjectName string    `json:"projectname"`
-	about       string    `gorm:"type:varchar(100);"`
+	About       string
 }
 
 // Projects struct
