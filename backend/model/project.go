@@ -11,6 +11,7 @@ type Project struct {
 	gorm.Model
 	ID          uuid.UUID `gorm:"type:uuid;"`
 	ProjectName string    `json:"projectname"`
+	about       string    `gorm:"type:varchar(100);"`
 }
 
 // Projects struct
