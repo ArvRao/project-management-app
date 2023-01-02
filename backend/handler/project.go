@@ -23,7 +23,7 @@ func CreateProject(c *fiber.Ctx) error {
 	// generate new Uid with that
 	db := database.DB.Db
 	project := new(model.Project)
-	// Store the body in the user and return error if encountered
+	// Store the body in project and return error if encountered
 	err := c.BodyParser(project)
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Something's wrong with your input", "data": err})
@@ -34,7 +34,6 @@ func CreateProject(c *fiber.Ctx) error {
 	}
 	// Return the created project
 	return c.Status(201).JSON(fiber.Map{"status": "success", "message": "Project has created", "data": project})
-	// return c.SendString("Creating project")
 }
 
 func GetProjectById(c *fiber.Ctx) error {
