@@ -50,8 +50,16 @@ func GetProjectById(c *fiber.Ctx) error {
 }
 
 func UpdateProjectById(c *fiber.Ctx) error {
+	db := database.DB.Db
 	id := c.Params("id")
-	return c.SendString("update project " + id)
+	// update part field of project
+	project := new(model.Project)
+	if err := c.BodyParser(project); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+
+	db.Where("id = ?", id).Updates(&project)
+	return c.Status(200).JSON("About value changed to -> " + project.About)
 }
 
 func DeleteProjectbyId(c *fiber.Ctx) error {
