@@ -5,8 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-// Project struct
-// add other fields like about the project and type of project
+// 1 project can have many todos
 type Project struct {
 	gorm.Model
 	ID          uuid.UUID `gorm:"type:uuid;"`
