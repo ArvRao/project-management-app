@@ -14,9 +14,15 @@ func SetupRoutes(app *fiber.App) {
 		return c.Status(200).JSON("Hello there @arvind")
 	})
 
+	// project
 	api.Get("/getAllProjects", handler.GetAllProjects)
 	api.Get("/getProject/:id", handler.GetProjectById)
 	api.Post("/createNewProject", handler.CreateProject)
 	api.Patch("/updateProjectById/:id", handler.UpdateProjectById)
 	api.Delete("/deleteProject/:id", handler.DeleteProjectbyId)
+
+	// todos
+	api.Get("/:projectId/getAllTodos", handler.GetAllTodosByProjectId)
+	api.Post("/createNewTodo", handler.CreateTodo)
+
 }
