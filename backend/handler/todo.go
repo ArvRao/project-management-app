@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"fmt"
+
 	"github.com/arvrao/project-management-app/database"
 	"github.com/arvrao/project-management-app/model"
 	"github.com/gofiber/fiber/v2"
@@ -10,12 +12,15 @@ import (
 func GetAllTodosByProjectId(c *fiber.Ctx) error {
 	db := database.DB.Db
 	var todos []model.Todo
+	// var projects []model.Project	// not required
+	// type Todo model.Todo
+	// var Project model.Project
 	id := c.Params("projectId")
-	db.Find(&todos, "project_id_fk = ?", id)
+	fmt.Println("id: ", id)
+	// db.Find(&projects, "ID = ?", id) 	// not required
+	todosVh := db.Debug().Joins("Project").Find(&todos, "project_id_fk = ?", id)
+	fmt.Println("todosVh: ", todosVh)
 
-	// if todos[0] {
-	// 	return c.Status(404).JSON(fiber.Map{"status": "error", "message": "Todo not found", "data": nil})
-	// }
 	if len(todos) == 0 {
 		return c.Status(404).JSON(fiber.Map{"message": "No todos available right now", "data": nil})
 	}
