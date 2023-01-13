@@ -12,12 +12,8 @@ import (
 func GetAllTodosByProjectId(c *fiber.Ctx) error {
 	db := database.DB.Db
 	var todos []model.Todo
-	// var projects []model.Project	// not required
-	// type Todo model.Todo
-	// var Project model.Project
 	id := c.Params("projectId")
 	fmt.Println("id: ", id)
-	// db.Find(&projects, "ID = ?", id) 	// not required
 	todosVh := db.Debug().Joins("Project").Find(&todos, "project_id_fk = ?", id)
 	fmt.Println("todosVh: ", todosVh)
 
