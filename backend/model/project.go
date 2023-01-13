@@ -19,7 +19,6 @@ type Projects struct {
 }
 
 func (project *Project) BeforeCreate(tx *gorm.DB) (err error) {
-	// UUID version 4
 	project.ID = uuid.New()
 	return
 }
