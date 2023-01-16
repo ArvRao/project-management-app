@@ -11,16 +11,17 @@ import (
 // get all projects
 func GetAllTodosByProjectId(c *fiber.Ctx) error {
 	db := database.DB.Db
-	var todos []model.Todo
+	// var todos []model.Todo
+	var todosAPI []model.TodoApiStruct
 	id := c.Params("projectId")
 	fmt.Println("id: ", id)
-	todosVh := db.Debug().Joins("Project").Find(&todos, "project_id_fk = ?", id)
+	todosVh := db.Debug().Model(&model.Todo{}).Joins("Project").Select("TodoName", "ProjectIdFk").Find(&todosAPI)
 	fmt.Println("todosVh: ", todosVh)
 
-	if len(todos) == 0 {
+	if len(todosAPI) == 0 {
 		return c.Status(404).JSON(fiber.Map{"message": "No todos available right now", "data": nil})
 	}
-	return c.Status(200).JSON(fiber.Map{"status": "success", "message": "All Todos are found", "data": todos})
+	return c.Status(200).JSON(fiber.Map{"status": "success", "message": "All Todos are found", "data": todosAPI})
 }
 
 func CreateTodo(c *fiber.Ctx) error {

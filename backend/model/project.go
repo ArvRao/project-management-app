@@ -18,6 +18,13 @@ type Projects struct {
 	Projects []Project `json:"projects"`
 }
 
+type ProjectApi struct {
+	// gorm.Model
+	ID          uuid.UUID `gorm:"primaryKey; -"`
+	ProjectName string    `json:"project_name"`
+	// About       string
+}
+
 func (project *Project) BeforeCreate(tx *gorm.DB) (err error) {
 	project.ID = uuid.New()
 	return
