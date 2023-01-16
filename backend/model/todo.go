@@ -13,3 +13,11 @@ type Todo struct {
 	ProjectIdFk uuid.UUID
 	Project     Project `gorm:"foreignKey:ProjectIdFk"`
 }
+
+type TodoApiStruct struct {
+	TodoName string `json:"todos_name"`
+	Priority int    `json:"priority"`
+	// Status      int        `json:"status"`
+	ProjectIdFk uuid.UUID  `json:"project_id_fk"`
+	Project     ProjectApi `gorm:"foreignKey:ProjectIdFk"`
+}
