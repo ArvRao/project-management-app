@@ -38,7 +38,6 @@ func CreateProject(c *fiber.Ctx) error {
 
 func GetProjectById(c *fiber.Ctx) error {
 	db := database.DB.Db
-	// get id params
 	id := c.Params("id")
 	var user model.Project
 	// find single user in the database by id
@@ -66,7 +65,6 @@ func DeleteProjectbyId(c *fiber.Ctx) error {
 	var project model.Project
 	// get id params
 	id := c.Params("id")
-	// find single user in the database by id
 	db.Find(&project, "id = ?", id)
 	if project.ID == uuid.Nil {
 		return c.Status(404).JSON(fiber.Map{"status": "error", "message": "Project not found", "data": nil})

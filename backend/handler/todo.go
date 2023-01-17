@@ -8,14 +8,15 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// get all projects
+// get all todos from particular project
+// project FK table -> only get the project name
 func GetAllTodosByProjectId(c *fiber.Ctx) error {
 	db := database.DB.Db
 	// var todos []model.Todo
 	var todosAPI []model.TodoApiStruct
 	id := c.Params("projectId")
 	fmt.Println("id: ", id)
-	todosVh := db.Debug().Model(&model.Todo{}).Joins("Project").Select("TodoName", "ProjectIdFk").Find(&todosAPI)
+	todosVh := db.Debug().Model(&model.Todo{}).Joins("Project").Select("TodoName", "ProjectIdFk").Find(&todosAPI, "project_id_fk = ?", id)
 	fmt.Println("todosVh: ", todosVh)
 
 	if len(todosAPI) == 0 {
