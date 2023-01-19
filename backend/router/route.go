@@ -24,5 +24,6 @@ func SetupRoutes(app *fiber.App) {
 	// todos
 	api.Get("/:projectId/getAllTodos", handler.GetAllTodosByProjectId)
 	api.Post("/createNewTodo", handler.CreateTodo)
+	api.Delete("/deleteTodo/:todoId", handler.DeleteTodo)
 
 }
