@@ -8,7 +8,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// get all todos from particular project
 // project FK table -> only get the project name
 func GetAllTodosByProjectId(c *fiber.Ctx) error {
 	db := database.DB.Db
@@ -37,5 +36,22 @@ func CreateTodo(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Could not create todo", "data": err})
 	}
 	// Return the created todo
-	return c.Status(201).JSON(fiber.Map{"status": "success", "message": "Project has created", "data": todo})
+	return c.Status(201).JSON(fiber.Map{"status": "success", "message": "Todo has been created", "data": todo})
+}
+
+func DeleteTodo(c *fiber.Ctx) error {
+	db := database.DB.Db
+	var todo model.Todo
+	// get id params
+	todoId := c.Params("todoId")
+	db.Find(&todo, "id = ?", todoId)
+	fmt.Println("todo: ", todo)
+	// if todo.ID == 0 {
+	// 	return c.Status(404).JSON(fiber.Map{"status": "error", "message": "Todo not found", "data": nil})
+	// }
+	err := db.Delete(&todo, "id = ?", todo).Error
+	if err != nil {
+		return c.Status(404).JSON(fiber.Map{"status": "error", "message": "Failed to delete project", "data": nil})
+	}
+	return c.Status(200).JSON(fiber.Map{"status": "success", "message": `Given todo ${todoId} has deleted`})
 }
