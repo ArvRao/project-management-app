@@ -39,19 +39,29 @@ func CreateTodo(c *fiber.Ctx) error {
 	return c.Status(201).JSON(fiber.Map{"status": "success", "message": "Todo has been created", "data": todo})
 }
 
+func UpdateTodo(c *fiber.Ctx) error {
+	db := database.DB.Db
+	id := c.Params("todoId")
+	todo := new(model.Todo)
+	if err := c.BodyParser(todo); err != nil {
+		return c.Status(503).SendString(err.Error())
+	}
+	db.Where("id = ?", id).Updates(&todo)
+	return c.Status(200).JSON(todo)
+}
+
 func DeleteTodo(c *fiber.Ctx) error {
 	db := database.DB.Db
 	var todo model.Todo
 	// get id params
 	todoId := c.Params("todoId")
-	db.Find(&todo, "id = ?", todoId)
 	fmt.Println("todo: ", todo)
 	// if todo.ID == 0 {
 	// 	return c.Status(404).JSON(fiber.Map{"status": "error", "message": "Todo not found", "data": nil})
 	// }
-	err := db.Delete(&todo, "id = ?", todo).Error
+	err := db.Delete(&todo, "id = ?", todoId).Error
 	if err != nil {
 		return c.Status(404).JSON(fiber.Map{"status": "error", "message": "Failed to delete project", "data": nil})
 	}
-	return c.Status(200).JSON(fiber.Map{"status": "success", "message": `Given todo ${todoId} has deleted`})
+	return c.Status(200).JSON(fiber.Map{"status": "success", "message": `Given todo ${todoId} has been deleted`})
 }
