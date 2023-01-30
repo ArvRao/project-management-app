@@ -24,6 +24,18 @@ func GetAllTodosByProjectId(c *fiber.Ctx) error {
 	return c.Status(200).JSON(fiber.Map{"status": "success", "message": "All Todos are found", "data": todosAPI})
 }
 
+func GetTodobyId(c *fiber.Ctx) error {
+	db := database.DB.Db
+	id := c.Params("id")
+	var todo model.Todo
+	// find single user in the database by id
+	db.Find(&todo, "id = ?", id)
+	if todo.ID != 0 {
+		return c.Status(404).JSON(fiber.Map{"status": "error", "message": "Project not found", "data": nil})
+	}
+	return c.Status(200).JSON(fiber.Map{"status": "success", "message": "Project Found", "data": todo})
+}
+
 func CreateTodo(c *fiber.Ctx) error {
 	db := database.DB.Db
 	todo := new(model.Todo)
