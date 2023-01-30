@@ -23,6 +23,7 @@ func SetupRoutes(app *fiber.App) {
 
 	// todos
 	api.Get("/:projectId/getAllTodos", handler.GetAllTodosByProjectId)
+	api.Get("/getTodoByName/:todoId", handler.GetTodobyId)
 	api.Post("/createNewTodo", handler.CreateTodo)
 	api.Patch("/updateTodo/:todoId", handler.UpdateTodo)
 	api.Delete("/deleteTodo/:todoId", handler.DeleteTodo)
