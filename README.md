@@ -6,7 +6,7 @@ Go, React and PostgreSQL
 
 - [go](https://go.dev/) server
 - [Fiber](https://gofiber.io/) - Go web server
-- [React](https://reactjs.org/) - Frontend UI library
+- [Nextjs](https://nextjs.org/) - Building React framework 
 - [TypeScript](https://www.typescriptlang.org/) - Static types
 - [Material UI](https://mui.com/) - Component library
 - [PostgreSQL](https://www.postgresql.org/) - RDMS database for persisting data
