@@ -39,6 +39,8 @@ export default function Home() {
           </div>
         </div>
 
+        <div>Set of tasks</div>
+
         <div className={styles.center}>
           <Image
             className={styles.logo}
