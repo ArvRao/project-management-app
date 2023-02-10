@@ -12,4 +12,4 @@ Go, React and PostgreSQL
 - [PostgreSQL](https://www.postgresql.org/) - RDMS database for persisting data
 - [Tailwindcss](https://tailwindcss.com/) - Styling HTML elements
 - [Figma](https://www.figma.com/) - Laying out the initial design
-- Other 3rd party go packages like [gorm](https://gorm.io/) for ORM
+- [gorm](https://gorm.io/) for ORM
